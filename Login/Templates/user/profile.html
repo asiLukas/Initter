@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<img class="profile_pic" src="{{profile_user.userprofile.profile_pic.url}}">
+<h1 class="profile_title">{{profile_user.username}}</h1>
+{%if profile_user == user%}
+<a href="/profile/{{profile_user.userprofile.user_id}}/update"><button class="profile-edit-btn">Edit Profile</button></a>
+<a href="/profile/{{profile_user.username}}/register_update"><button class="profile-edit-btn">Change password</button></a> <br><br>
+{%else%}
+
+{%if follow%}
+<form method="post" action=""> {%csrf_token%}
+    <button class="follow-btn">Follow</button> <br><br>
+</form>
+{%else%}
+<form method="post" action=""> {%csrf_token%}
+    <button class="follow-btn">Unfollow</button> <br><br>
+</form>
+
+
+{%endif%}
+{%endif%}
+<a href="/profile/{{profile_user.username}}/followers"><h5 class="followers">Followers: {{followers}}</h5></a>
+<a href="/profile/{{profile_user.username}}/follows"><h5 class="follows">Follows: {{follows}}</h5></a>
+<h5 class="profile_description">{{profile_user.userprofile.description|linebreaks}}</h5>
+<br><br>
+{%for p in post%}
+
+{%if p.author == profile_user and user == profile_user%}
+<h3>{{p.title}}</h3>
+<h6>Posted: {{p.date}}</h6>
+<a href="{{p.get_absolute_url}}"><img src="{{p.image.url}}"></a>
+<hr style="margin-start: auto;
+        margin-end: auto;
+        border-style: inset;
+        border-width: 3px;">
+
+{%elif p.author == profile_user and user != profile_user%}
+<h3>{{p.title}}</h3>
+<h6>Posted: {{p.date}}</h6>
+<img src="{{p.image.url}}">
+<hr style="margin-start: auto;
+        margin-end: auto;
+        border-style: inset;
+        border-width: 3px;">
+
+
+{%endif%}
+{%endfor%}
+{%endblock%}

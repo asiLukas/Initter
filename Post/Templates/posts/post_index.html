@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h3>{{obj.title}}</h3>
+<br>
+<img src="{{obj.image.url}}">
+<h4>{{obj.description}}</h4>
+
+{% if user == obj.author %}
+<a href="update/"><button class="btn btn-dark">Update</button></a>  <a href="delete/"><button class="btn btn-dark">Delete</button> </a>
+{%endif%}
+{%endblock%}

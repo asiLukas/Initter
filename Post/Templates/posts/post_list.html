@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{%for post in obj%}
+<h3>{{post.title}}</h3>
+<a href="/p/{{post.id}}/"><img src="{{post.image.url}}"></a>
+<h6>Created by: {{post.author}}</h6>
+<h6>Posted: {{post.date}}</h6>
+<br>
+<hr style="margin-start: auto;
+        margin-end: auto;
+        border-style: inset;
+        border-width: 3px;">
+<br>
+
+{%endfor%}
+{%endblock%}
