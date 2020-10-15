@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+{%block login%}
+<form method="post" action="" enctype="multipart/form-data"> {%csrf_token%}
+    {{form|crispy}}
+    {{profile_form|crispy}}
+    <button class="btn btn-dark">Register</button>
+</form>
+{%endblock%}

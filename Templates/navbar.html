@@ -7,14 +7,13 @@
 </head>
 <body>
 <nav>
-    <label class="logo">Initter</label>
-    <a href="/profile/">Search</a>
-    <a href="/">Home</a>
+    <label class="logo"><a id=Initter href="/">Initter</a></label>
+    {%if request.user.is_authenticated%}
+    <a href="/search/">Search</a>
     <a href="/create">Create Post</a>
-    <a href="/profile/{{user.username}}">Profile</a>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <a href="/profile/{{request.user}}">Profile</a>
     <a href="/logout">Logout</a>
+    {%endif%}
 
 </nav>
 </body>

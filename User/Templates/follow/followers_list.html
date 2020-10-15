@@ -1,0 +1,6 @@
+{%extends 'base.html'%}
+{%block content%}
+{%for f in obj%}
+<h1> <a href="/profile/{{f.follow}}">{{f.follow}}</a></h1> <br>
+{%endfor%}
+{%endblock%}

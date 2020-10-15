@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Initter, the social media made by one kid.">
+    <meta name="keywords" content="social, social media, initter, instagram, twitter, facebook">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         body{
@@ -21,12 +23,15 @@
 
         label.logo {
         color: white;
-        font-size: 25px;
-        padding: 0 100px;
+
+        padding: 0 250px 0px 0px;
         font-weight: bold;}
 
+        #Initter {
+        font-size: 25px}
+
         nav {
-        height: 50px;
+        height: 60px;
         width: 100%;
         background: rgb(40, 40, 40);
         }
@@ -61,13 +66,12 @@
         right: 40%;
         z-index: 1;}
 
-
         form {
         text-align: center;
         margin: 0 auto;
         }
         p {
-        color: white;
+        color: grey;
         text-align: center;}
 
         img {
@@ -139,33 +143,57 @@
         .pics_on_profile {
         margin-left: 200px}
 
+        footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2.5rem;
+       }
+
+       #content {
+       padding-bottom: 2.5rem;}
+
+       #page_container {
+       position: relative;
+       min-height: 100vh}
+
+
+
     </style>
-    <title>{%block title%}Something{%endblock%}</title>
+    <title>{%block title%}Initter{%endblock%}</title>
 </head>
 <body>
 {%include 'navbar.html'%}
+{%load crispy_forms_tags%}
 
-<div id="content" name="content" class="main">
-    <div class="row justify-content-center">
-        <div class="col-8">
-            <h1 class="mt-2"></h1>
-            <br>
-            <br>
-            <br>
-            <hr class="mt-0 mb-4=">
+<div id="page_container">
+    <div id="content" name="content" class="main">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h1 class="mt-2"></h1>
+                <br>
+                <br>
+                <br>
+                <hr class="mt-0 mb-4=">
+                {%if request.user.is_authenticated%}
+                {%block content%}
 
-            {%block content%}
-            replace this
-            {%endblock%}
+                {%endblock%}
+                {%else%}
+                {%block login%}
+                <h1>You are not logged in, in order to have access to this website, you need to be registered.
+                Click <a href="/login/" style="color: grey">here</a> to login</h1>
+                {%endblock%}
+                {%endif%}
 
-            {%block login%}
-            {%endblock%}
+
+            </div>
         </div>
     </div>
+    <footer>
+    <p style="color: rgb(60, 60, 60)">&copy 2020 Lukáš Zagorský</p>
+    </footer>
 </div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -4,7 +4,7 @@ from .forms import PostForm
 from django.contrib.auth.forms import User
 
 
-def index_view(request, id):
+def detail_view(request, id):
     obj = Post.objects.get(id=id)
     context = {
         'obj': obj,
