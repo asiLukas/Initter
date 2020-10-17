@@ -54,7 +54,7 @@ def profile_update_view(request, user):
     return render(request, 'user/profile_update.html', context)
 
 
-def base_profile_view(request):
+def search_view(request):
     obj = User.objects.all()
     context = {
         'user': obj

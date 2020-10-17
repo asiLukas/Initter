@@ -17,36 +17,105 @@
         a {
         color: white;
         }
+
         a:hover{
         text-decoration: none;
-        color: rgb(200, 200, 200)}
-
-        label.logo {
-        color: white;
-
-        padding: 0 250px 0px 0px;
-        font-weight: bold;}
-
-        #Initter {
-        font-size: 25px}
-
-        nav {
-        height: 60px;
-        width: 100%;
-        background: rgb(40, 40, 40);
+        color: rgb(200, 200, 200)
         }
 
-        nav a{
-        display: inline-block;
-        line-height: 45px;
-        margin: 0 5px;
-        color: white;
-        font-size: 18px;
-        padding: 7px;
+        form {
+        text-align: center;
+        margin: 0 auto;
         }
 
-        nav a:hover{
-        color: grey;}
+        p {
+        color: grey;
+        text-align: center;
+        }
+
+        img {
+        max-width:100%;
+        max-height:100%;
+        width:auto;
+        height:auto;
+        }
+
+
+        .profile_pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        position: absolute;
+        top: 30px;
+        left: -40px;
+        }
+
+        .profile_title {
+        position: absolute;
+        left: 120px;
+        }
+
+        @media only screen and (max-width: 1100px) {
+        .profile_description {
+        max-width: 175px;
+        word-wrap:break-word;
+        position: relative;
+        top: 100px;
+        left: -30px;
+        }
+        }
+        @media only screen and (min-width: 1101px) {
+        .profile_description{
+        max-width: 175px;
+        word-wrap:break-word;
+        position: relative;
+        left: 350px;
+        top: -85px;
+        }
+        }
+
+        .profile-edit-btn {
+        position: absolute;
+        left: 140px;
+        background-color: rgb(20, 20, 20);
+        color: white;
+        line-height: 1.8;
+        border: 0.1rem solid #dbdbdb;
+        border-radius: 0.3rem;
+
+        }
+
+        .followers {
+        position: absolute;
+        left: 150px;
+        top: 205px;
+        }
+
+        .follows {
+        position: absolute;
+        left: 150px;
+        top: 240px;
+        }
+
+        .follow-btn {
+        background-color: rgb(20, 20, 20);
+        color: white;
+        line-height: 1.8;
+        border: 0.1rem solid #dbdbdb;
+        border-radius: 0.3rem;
+        padding: 0 2.4rem;
+        position: absolute;
+        top: 150px;
+        left: 150px;
+        }
+
+        @media only screen and (max-width: 1100px) {
+        .pics_on_profile {
+        position: relative;
+        top: 100px
+        }
+        }
+
 
         #searchbar {
         background-color: rgb(60, 60, 60);
@@ -56,108 +125,24 @@
         margin-top: 8px;
         margin-right: 16px;
         font-size: 17px;
-}
-
-        .not_logged_in {
-        color: white;
-        padding-top: 60px;
-        position: fixed;
-        up: 0;
-        right: 40%;
-        z-index: 1;}
-
-        form {
-        text-align: center;
-        margin: 0 auto;
-        }
-        p {
-        color: grey;
-        text-align: center;}
-
-        img {
-        max-width:100%;
-        max-height:100%;
-        width:auto;
-        height:auto;}
-
-        .profile_pic {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        float: left;
-        position: relative;
-        top: -60px;
-        left: -50px}
-
-        .profile_title {
-        float: left;
-        position: relative;
-        right:30px
         }
 
-        .profile_description {
-        max-width: 200px;
-        word-wrap:break-word;
-        float: left;
-        margin-right: 2000px
-        }
-
-        .profile-edit-btn {
-        background-color: rgb(20, 20, 20);
-        color: white;
-        line-height: 1.8;
-        border: 0.1rem solid #dbdbdb;
-        border-radius: 0.3rem;
-        padding: 0 2.4rem;
-        float: left;
-        }
-
-        .register-edit-btn {
-        background-color: rgb(20, 20, 20);
-        color: white;
-        line-height: 1.8;
-        border: 0.1rem solid #dbdbdb;
-        border-radius: 0.3rem;
-        padding: 0 2.4rem;
-        float: left;
-        }
-
-        .followers {
-        margin-right: 455px}
-
-        .follows {
-        margin-top: -32px;
-        margin-right: 100px}
-
-        .follow-btn {
-        background-color: rgb(20, 20, 20);
-        color: white;
-        line-height: 1.8;
-        border: 0.1rem solid #dbdbdb;
-        border-radius: 0.3rem;
-        padding: 0 2.4rem;
-        float: left;
-        margin-left: 50px;
-        }
-
-        .pics_on_profile {
-        margin-left: 200px}
 
         footer {
         position: absolute;
         bottom: 0;
         width: 100%;
         height: 2.5rem;
-       }
+        }
 
-       #content {
-       padding-bottom: 2.5rem;}
+        #content {
+        padding-bottom: 2.5rem;
+        }
 
-       #page_container {
-       position: relative;
-       min-height: 100vh}
-
-
+        #page_container {
+        position: relative;
+        min-height: 100vh;
+        }
 
     </style>
     <title>{%block title%}Initter{%endblock%}</title>
@@ -167,13 +152,11 @@
 {%load crispy_forms_tags%}
 
 <div id="page_container">
-    <div id="content" name="content" class="main">
+    <div id="content" class="main">
         <div class="row justify-content-center">
             <div class="col-8">
                 <h1 class="mt-2"></h1>
-                <br>
-                <br>
-                <br>
+                <br><br>
                 <hr class="mt-0 mb-4=">
                 {%if request.user.is_authenticated%}
                 {%block content%}

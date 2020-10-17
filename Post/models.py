@@ -10,10 +10,14 @@ class Post(models.Model):
     width_field = models.IntegerField(default=0)
     description = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now=True, auto_now_add=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='author', on_delete=models.CASCADE)
+    like = models.ForeignKey(User, related_name='like', on_delete=models.CASCADE, default=1)
 
     class Meta:
         ordering = ['-date']
 
     def get_absolute_url(self):
         return reverse('post:detail', kwargs={'id': self.id})
+
+    def __str__(self):
+        return self.title
