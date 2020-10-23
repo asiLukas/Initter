@@ -11,7 +11,6 @@ class Post(models.Model):
     description = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now=True, auto_now_add=False)
     author = models.ForeignKey(User, related_name='author', on_delete=models.CASCADE)
-    like = models.ForeignKey(User, related_name='like', on_delete=models.CASCADE, default=1)
 
     class Meta:
         ordering = ['-date']
@@ -21,3 +20,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Like(models.Model):
+    post = models.ForeignKey(Post, related_name='post', on_delete=models.CASCADE, default=2)
+    like = models.ForeignKey(User, related_name='like', on_delete=models.CASCADE, default=1)
+
+    class Meta:
+        unique_together = ('like', 'post')
+

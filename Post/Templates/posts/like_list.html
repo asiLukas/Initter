@@ -1,0 +1,6 @@
+{%extends 'base.html'%}
+{%block content%}
+{%for l in likes%}
+<h1> <a href="/profile/{{l.like}}">{{l.like}}</a></h1> <br>
+{%endfor%}
+{%endblock%}

@@ -1,12 +1,24 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<h3>{{obj.title}}</h3>
-<br>
-<img src="{{obj.image.url}}">
-<h4>{{obj.description}}</h4>
-
-{% if user == obj.author %}
-<a href="update/"><button class="btn btn-dark">Update</button></a>  <a href="delete/"><button class="btn btn-dark">Delete</button> </a>
+<h3>{{post.title}}</h3>
+<a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
+<h6 class="post_date">{{post.date.date}}</h6>
+<img src="{{post.image.url}}">
+{%if like%}
+<form method="post" action=""> {%csrf_token%}
+    <button id='like-btn' class="btn btn-dark"><i class="fa fa-heart-o"></i></button>
+</form>
+{%else%}
+<form method="post" action=""> {%csrf_token%}
+    <button id="unlike-btn" class="btn btn-dark"><i class="fa fa-heart"></i></button>
+</form>
 {%endif%}
-{%endblock%}
+<a href="/p/{{post.id}}/like"><h5 class="like">{{like_count}} people like this</h5></a>
+<br>
+<h4>{{post.description}}</h4>
+
+{% if user == post.author %}
+<a href="update/"><button class="btn btn-dark">Update</button></a> <a href="delete/"><button class="btn btn-dark">Delete</button> </a>
+{%endif%}
+{%endblock%}a
