@@ -1,7 +1,8 @@
 {%extends 'base.html'%}
 {%load crispy_forms_tags%}
 {%block content%}
-<h3>{{post.title}}</h3>
+<h3 class="post_title">{{post.title}}</h3>
+<a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
 <a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
 <h6 class="post_date">{{post.date.date}}</h6>
 <img src="{{post.image.url}}">
@@ -17,13 +18,17 @@
 </form>
 {%endif%}
 
-<h5 class="like"> <a href="/p/{{post.id}}/like">{{like_count}} people</a> like this</h5>
+<h5 class="like"><a href="/p/{{post.id}}/like">{{like_count}} people</a> like this</h5>
 <br>
+
 {%for i in comments%}
+<a href="/profile/{{i.user}}"><img class="post_comment_pic" src="{{i.user.userprofile.profile_pic.url}}"></a>
 {%if user == i.user%}
-<h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a><a href="/c/{{i.id}}/{{post.id}}">{{i.comment}}</a></h5>
+<h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a></h5>
+<p class="post_comment"><a href="/c/{{i.id}}/{{post.id}}">{{i.comment}}</a></p>
 {%else%}
-<h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a>{{i.comment}}</h5>
+<h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a></h5>
+<p class="post_comment">{{i.comment}}</p>
 {%endif%}
 <br>
 {%endfor%}
@@ -35,6 +40,10 @@
 <br>
 
 {% if user == post.author %}
-<a href="update/"><button class="btn btn-dark">Update</button></a> <a href="delete/"><button class="btn btn-dark">Delete</button> </a>
+<a href="update/">
+    <button class="btn btn-dark">Update</button>
+</a> <a href="delete/">
+    <button class="btn btn-dark">Delete</button>
+</a>
 {%endif%}
 {%endblock%}

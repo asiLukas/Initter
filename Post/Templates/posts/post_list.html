@@ -2,16 +2,14 @@
 
 {%block content%}
 {%for post in obj%}
-<h3>{{post.title}}</h3>
+<h3 class="post_title">{{post.title}}</h3>
+<a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
 <a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
 <h6 class="post_date">{{post.date.date}}</h6>
 <a href="/p/{{post.id}}/"><img src="{{post.image.url}}"></a>
 
 <br>
-<hr style="margin-start: auto;
-        margin-end: auto;
-        border-style: inset;
-        border-width: 3px;">
+<hr>
 <br>
 
 {%endfor%}

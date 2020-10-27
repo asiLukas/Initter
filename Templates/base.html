@@ -15,6 +15,15 @@
         text-align: center;
         }
 
+        #content {
+        padding-bottom: 2.5rem;
+        }
+
+        #page_container {
+        position: relative;
+        min-height: 100vh;
+        }
+
         a {
         color: white;
         }
@@ -34,37 +43,20 @@
         text-align: center;
         }
 
-        img {
-        max-width:100%;
-        max-height:100%;
-        width:auto;
-        height:auto;
-        }
-
-
-        .profile_pic {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        position: absolute;
-        top: 30px;
-        left: -40px;
-        }
-
-        .profile_title {
-        position: absolute;
-        left: 120px;
-        }
 
         @media only screen and (max-width: 1100px) {
+        .profile_title {
+        font-size: 2em}
+
         .profile_description {
         max-width: 175px;
         word-wrap:break-word;
-        position: relative;
-        top: 100px;
-        left: -30px;
+        position: static;
+        margin-top: 100px;
+        margin-left: -30px;
         }
         }
+
         @media only screen and (min-width: 1101px) {
         .profile_description{
         max-width: 175px;
@@ -73,6 +65,21 @@
         left: 350px;
         top: -85px;
         }
+        }
+
+        .profile_pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        position: absolute;
+        top: 30px;
+        left: -40px;
+        object-fit: cover;
+        }
+
+        .profile_title {
+        position: absolute;
+        left: 120px;
         }
 
         .profile-edit-btn {
@@ -110,14 +117,6 @@
         left: 150px;
         }
 
-        @media only screen and (max-width: 1100px) {
-        .pics_on_profile {
-        position: relative;
-        top: 100px
-        }
-        }
-
-
         #searchbar {
         background-color: rgb(60, 60, 60);
         color: white;
@@ -136,20 +135,44 @@
         height: 2.5rem;
         }
 
-        #content {
-        padding-bottom: 2.5rem;
-        }
-
-        #page_container {
-        position: relative;
-        min-height: 100vh;
-        }
-
         .post_author {
-        text-align: left}
+        text-align: left;
+        margin-left: 50px}
 
         .post_date {
+        text-align: left;
+        margin-left: 50px}
+
+        .post_title {
+        max-width: 1000px;
+        word-wrap:break-word;
         text-align: left}
+
+        img {
+        max-width:100%;
+        max-height:100%;
+        width:auto;
+        height:auto;
+        }
+
+
+        @media only screen and (max-width: 400px) {
+        img {
+        max-width:120%;
+        max-height:120%;
+        }
+        hr {
+        display: none
+        }
+        }
+
+
+        hr {
+        margin-start: auto;
+        margin-end: auto;
+        border-style: inset;
+        border-width: 5px;
+        }
 
         .like_btn {
         text-align: left}
@@ -171,7 +194,31 @@
         text-align: left;
         max-width: 1000px;
         word-wrap:break-word;
+        color: white;
+        margin-left: 50px}
+
+        .post_comment_pic {
+        border-radius: 50%;
+        object-fit: cover;
+        width: 40px;
+        height: 40px;
+        float:left;
         }
+
+        .search_pic {
+        border-radius: 50%;
+        object-fit: cover;
+        width: 60px;
+        height: 60px;
+        }
+
+        .post_pic {
+        border-radius: 50%;
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        float: left}
+
 
     </style>
     <title>{%block title%}Initter{%endblock%}</title>
@@ -186,7 +233,7 @@
             <div class="col-8">
                 <h1 class="mt-2"></h1>
                 <br><br>
-                <hr class="mt-0 mb-4=">
+
                 {%if request.user.is_authenticated%}
                 {%block content%}
 

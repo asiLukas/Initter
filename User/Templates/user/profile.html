@@ -26,17 +26,14 @@
 {%endif%}
 <a href="/profile/{{profile_user.username}}/followers"><h5 class="followers">Followers: {{followers}}</h5></a>
 <a href="/profile/{{profile_user.username}}/follows"><h5 class="follows">Follows: {{follows}}</h5></a>
-<h5 class="profile_description">{{profile_user.userprofile.description|linebreaks}}</h5>
+<h5 class="profile_description">{{profile_user.userprofile.description|linebreaks}}</h5><br><br>
 
 {%for p in post%}
 
 {%if p.author == profile_user%}
 <h3 class="pics_on_profile">{{p.title}}</h3>
 <a class='pics_on_profile' href="{{p.get_absolute_url}}"><img src="{{p.image.url}}"></a>
-<hr class="pics_on_profile" style="margin-start: auto;
-        margin-end: auto;
-        border-style: inset;
-        border-width: 3px;">
+<hr class="pics_on_profile">
 
 
 

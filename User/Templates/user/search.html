@@ -4,7 +4,9 @@
 <input id="searchbar" type="text" placeholder="Search Users" onkeyup="search_user()">
 <br>
 {%for u in user%}
+<a href="/profile/{{u}}"><img class="search_pic" src="{{u.userprofile.profile_pic.url}}"></a>
 <a href="/profile/{{u}}"><h2 class="users">{{u}}</h2></a>
+<br>
 {%endfor%}
 <script>
         function search_user() {

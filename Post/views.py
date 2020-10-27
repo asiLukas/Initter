@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like, Comment
 from .forms import PostForm, CommentForm
+from User.models import UserProfile
 from django.db import IntegrityError
 from django.contrib import messages
 
 
-def comment_adjustment(request, id, id2):
+def comment_adjustment_view(request, id, id2):
     obj = get_object_or_404(Comment, id=id)
     post = get_object_or_404(Post, id=id2)
     form = CommentForm(request.POST or None, instance=obj)
@@ -39,7 +40,7 @@ def detail_view(request, id):
     post = Post.objects.get(id=id)
     like_count = post.post.filter().values('like').count()
     likes = post.post.all().filter().values('like')
-    if {'like': request.user.id} not in likes:
+    if {'like': user.id} not in likes:
         like = True
     else:
         like = False
@@ -59,6 +60,7 @@ def detail_view(request, id):
 
     form = CommentForm()
     comments = post.c_post.all()
+    user_comment = UserProfile.objects.all()
 
     if request.method == 'POST' and 'commentform' in request.POST:
         form = CommentForm(request.POST or None)
@@ -74,6 +76,7 @@ def detail_view(request, id):
         'like': like,
         'form': form,
         'comments': comments,
+        'user_comment': user_comment
     }
 
     return render(request, 'posts/post_index.html', context)

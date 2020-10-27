@@ -34,4 +34,3 @@ class Comment(models.Model):
     c_post = models.ForeignKey(Post, related_name='c_post', on_delete=models.CASCADE, default=1)
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE, default=2)
     comment = models.CharField(max_length=500)
-
