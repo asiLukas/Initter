@@ -1,42 +1,73 @@
 {%extends 'base.html'%}
 
 {%block content%}
+<header>
+    <div class="container">
+        <div class="profile_main">
 
-<img class="profile_pic" src="{{profile_user.userprofile.profile_pic.url}}">
-<h1 class="profile_title">{{profile_user.username}}</h1>
-{%if profile_user == user%}
-<br><br>
-<a href="/profile/{{profile_user.userprofile.user_id}}/update"><button class="profile-edit-btn">Edit Profile</button></a>
-<br><br>
-<a href="/profile/{{profile_user.username}}/register_update"><button class="profile-edit-btn">Change password</button></a>
+            <div class="profile_pic">
+                <img src="{{profile_user.userprofile.profile_pic.url}}">
+            </div>
 
-{%else%}
+            <div class="profile_settings">
 
-{%if follow%}
-<form method="post" action=""> {%csrf_token%}
-    <button class="follow-btn">Follow</button> <br><br><br><br>
-</form>
-{%else%}
-<form method="post" action=""> {%csrf_token%}
-    <button class="follow-btn">Unfollow</button> <br><br><br><br>
-</form>
+                <h1 class="profile_title">{{profile_user.username}}</h1>
 
+                {%if profile_user == user%}
+                <a href="/profile/{{profile_user.userprofile.user_id}}/update">
+                    <button class="profile-edit-btn">Edit Profile</button>
+                </a>
 
-{%endif%}
-{%endif%}
-<a href="/profile/{{profile_user.username}}/followers"><h5 class="followers">Followers: {{followers}}</h5></a>
-<a href="/profile/{{profile_user.username}}/follows"><h5 class="follows">Follows: {{follows}}</h5></a>
-<h5 class="profile_description">{{profile_user.userprofile.description|linebreaks}}</h5><br><br>
+                <a href="/profile/{{profile_user.username}}/register_update">
+                    <button class="btn profile-settings-btn"><i class="fa fa-gear"></i></button>
+                </a>
 
-{%for p in post%}
+                {%else%}
 
-{%if p.author == profile_user%}
-<h3 class="pics_on_profile">{{p.title}}</h3>
-<a class='pics_on_profile' href="{{p.get_absolute_url}}"><img src="{{p.image.url}}"></a>
-<hr class="pics_on_profile">
+                {%if follow%}
+                <form method="post" action=""> {%csrf_token%}
+                    <button class="follow-btn">Follow</button>
+                </form>
+                {%else%}
+                <form method="post" action=""> {%csrf_token%}
+                    <button class="follow-btn">Unfollow</button>
+                </form>
 
+                {%endif%}
+                {%endif%}
+            </div>
 
+            <div class="follow_stats">
+                <ul>
+                    <li>
+                        <a href="/profile/{{profile_user.username}}/followers"><span>Followers <strong>{{followers}}</strong>
+                </span></a></li>
+                    <li>
+                        <a href="/profile/{{profile_user.username}}/follows"><span>Following <strong>{{follows}}</strong></span>
+                        </a></li>
+                </ul>
+            </div>
+            <br><br>
+            <div class="profile_description">
+                <span>{{profile_user.userprofile.description|linebreaks}}</span>
+            </div>
+        </div>
 
-{%endif%}
-{%endfor%}
+    </div>
+</header>
+
+<main>
+    <div class="row">
+        {%for p in post%}
+        {%if p.author == profile_user%}
+        <div class="column">
+            <a href="/p/{{p.id}}/"><img class="gallery_image" src="{{p.image.url}}"></a>
+        </div>
+        {%endif%}
+        {%endfor%}
+
+    </div>
+    <div class="loader"></div>
+</main>
+
 {%endblock%}

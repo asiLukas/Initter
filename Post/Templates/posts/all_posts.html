@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block content%}
+
+{%for post in obj%}
+    <article class="post">
+        <div class="post">
+            <section class="post_up">
+                <a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
+                <div class="author_date">
+                    <a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
+                    <h6 class="post_date">{{post.date.date}}</h6>
+                </div>
+            </section>
+
+            <section class="img">
+                <a href="/p/{{post.id}}/"><img src="{{post.image.url}}"></a>
+            </section>
+
+            <section class="post_down">
+
+            </section>
+        </div>
+    </article>
+    <br><br>
+
+{%endfor%}
+{%endblock%}

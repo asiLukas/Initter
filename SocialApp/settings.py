@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production secret! I will use different key in production, don't worry :)
 SECRET_KEY = '!mv^o%%t_($ric!t5r)ig8&)tk&&j-!#^9+ih5t)n3gw2ml+48'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -123,5 +123,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

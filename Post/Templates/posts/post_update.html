@@ -2,7 +2,7 @@
 {%load crispy_forms_tags%}
 {%block content%}
 
-{%if obj.author == user%}
+{%if obj.author == user or user.is_superuser%}
 <form method="post" action="" enctype="multipart/form-data"> {%csrf_token%}
     {{form|crispy}}
     <button class="btn btn-dark">Update</button>

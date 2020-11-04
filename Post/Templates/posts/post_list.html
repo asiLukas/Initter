@@ -1,16 +1,28 @@
 {%extends 'base.html'%}
-
 {%block content%}
+<p style="font-size: 15px">Click <a href="/f" style="color: white">here</a> to display all posts</p>
+
 {%for post in obj%}
-<h3 class="post_title">{{post.title}}</h3>
-<a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
-<a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
-<h6 class="post_date">{{post.date.date}}</h6>
-<a href="/p/{{post.id}}/"><img src="{{post.image.url}}"></a>
+    {%for i in follows%}
+        {%if i.follower == post.author%}
+            <article class="post">
+                <div class="post">
+                    <section class="post_up">
 
-<br>
-<hr>
-<br>
+                        <a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
+                        <div class="author_date">
+                            <a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
+                            <h6 class="post_date">{{post.date.date}}</h6>
+                        </div>
+                     </section>
+                    <section class="img">
+                        <a href="/p/{{post.id}}/"><img src="{{post.image.url}}"></a>
+                    </section>
+                </div>
+            </article>
 
+    <br><br>
+    {%endif%}
+    {%endfor%}
 {%endfor%}
 {%endblock%}

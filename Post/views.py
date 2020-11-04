@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 
 
-def comment_adjustment_view(request, id, id2):
+def comment_adjustment_view(request, id, id2): # id is a comment, id2 is a post
     obj = get_object_or_404(Comment, id=id)
     post = get_object_or_404(Post, id=id2)
     form = CommentForm(request.POST or None, instance=obj)
@@ -22,12 +22,12 @@ def comment_adjustment_view(request, id, id2):
         obj.delete()
         return redirect('/')
 
-    return render(request, 'posts/comment_delete.html', context)
+    return render(request, 'posts/comment_adjustment.html', context)
 
 
 def like_view(request, id):
     post = Post.objects.get(id=id)
-    likes = post.post.all()  # Getting all users that liked this post
+    likes = post.post.all()  # Getting all users that liked the post
 
     context = {
         'likes': likes
@@ -38,13 +38,15 @@ def like_view(request, id):
 def detail_view(request, id):
     user = request.user
     post = Post.objects.get(id=id)
-    like_count = post.post.filter().values('like').count()
-    likes = post.post.all().filter().values('like')
-    if {'like': user.id} not in likes:
+    like_count = post.post.filter().values('like').count()  # count number of likes
+    likes = post.post.all().filter().values('like')  # users that liked the post
+
+    if {'like': user.id} not in likes:  # if user didn't like the pic, he can, else he can unlike
         like = True
     else:
         like = False
 
+    # like twice exception
     try:
         if like:
             if request.method == 'POST' and 'likeform' in request.POST:
@@ -59,8 +61,7 @@ def detail_view(request, id):
         messages.warning(request, 'no')
 
     form = CommentForm()
-    comments = post.c_post.all()
-    user_comment = UserProfile.objects.all()
+    comments = post.c_post.all() # Getting all comments of current post
 
     if request.method == 'POST' and 'commentform' in request.POST:
         form = CommentForm(request.POST or None)
@@ -76,7 +77,6 @@ def detail_view(request, id):
         'like': like,
         'form': form,
         'comments': comments,
-        'user_comment': user_comment
     }
 
     return render(request, 'posts/post_index.html', context)
@@ -84,13 +84,29 @@ def detail_view(request, id):
 
 def list_view(request):
     obj = Post.objects.all()
+    if request.user.is_authenticated:
+        pass
+    else:
+        return redirect('/login')
+    follows = request.user.follow.all()
 
     context = {
         'obj': obj,
-
+        'follows': follows
     }
 
     return render(request, 'posts/post_list.html', context)
+
+
+def all_posts_view(request):
+    obj = Post.objects.all()
+    follows = request.user.follow.all()
+
+    context = {
+        'obj': obj,
+        'follows': follows
+    }
+    return render(request, 'posts/all_posts.html', context)
 
 
 def create_view(request):

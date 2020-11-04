@@ -4,7 +4,6 @@ from django.contrib.auth.forms import User
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=100, default='')
     image = models.ImageField(upload_to='post/%Y/%m', height_field='height_field', width_field='width_field')
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)

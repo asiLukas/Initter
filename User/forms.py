@@ -5,7 +5,7 @@ from .models import UserProfile
 
 
 class RegisterForm(UserCreationForm):
-    username = forms.CharField(max_length=10)
+    username = forms.CharField(max_length=20)
 
     class Meta:
         model = User

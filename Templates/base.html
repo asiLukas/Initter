@@ -5,234 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Initter, the social media made by one kid.">
     <meta name="keywords" content="social, social media, initter, instagram, twitter, facebook">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        body{
-        background-color: rgb(20, 20, 20);
-        color: white;
-        font-family:sans-serif;
-        text-align: center;
-        }
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="icon" href="/static/images/favicon.ico">
 
-        #content {
-        padding-bottom: 2.5rem;
-        }
-
-        #page_container {
-        position: relative;
-        min-height: 100vh;
-        }
-
-        a {
-        color: white;
-        }
-
-        a:hover{
-        text-decoration: none;
-        color: rgb(200, 200, 200)
-        }
-
-        form {
-        text-align: center;
-        margin: 0 auto;
-        }
-
-        p {
-        color: grey;
-        text-align: center;
-        }
-
-
-        @media only screen and (max-width: 1100px) {
-        .profile_title {
-        font-size: 2em}
-
-        .profile_description {
-        max-width: 175px;
-        word-wrap:break-word;
-        position: static;
-        margin-top: 100px;
-        margin-left: -30px;
-        }
-        }
-
-        @media only screen and (min-width: 1101px) {
-        .profile_description{
-        max-width: 175px;
-        word-wrap:break-word;
-        position: relative;
-        left: 350px;
-        top: -85px;
-        }
-        }
-
-        .profile_pic {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        position: absolute;
-        top: 30px;
-        left: -40px;
-        object-fit: cover;
-        }
-
-        .profile_title {
-        position: absolute;
-        left: 120px;
-        }
-
-        .profile-edit-btn {
-        position: absolute;
-        left: 140px;
-        background-color: rgb(20, 20, 20);
-        color: white;
-        line-height: 1.8;
-        border: 0.1rem solid #dbdbdb;
-        border-radius: 0.3rem;
-
-        }
-
-        .followers {
-        position: absolute;
-        left: 150px;
-        top: 205px;
-        }
-
-        .follows {
-        position: absolute;
-        left: 150px;
-        top: 240px;
-        }
-
-        .follow-btn {
-        background-color: rgb(20, 20, 20);
-        color: white;
-        line-height: 1.8;
-        border: 0.1rem solid #dbdbdb;
-        border-radius: 0.3rem;
-        padding: 0 2.4rem;
-        position: absolute;
-        top: 150px;
-        left: 150px;
-        }
-
-        #searchbar {
-        background-color: rgb(60, 60, 60);
-        color: white;
-        padding: 6px;
-        border: none;
-        margin-top: 8px;
-        margin-right: 16px;
-        font-size: 17px;
-        }
-
-
-        footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 2.5rem;
-        }
-
-        .post_author {
-        text-align: left;
-        margin-left: 50px}
-
-        .post_date {
-        text-align: left;
-        margin-left: 50px}
-
-        .post_title {
-        max-width: 1000px;
-        word-wrap:break-word;
-        text-align: left}
-
-        img {
-        max-width:100%;
-        max-height:100%;
-        width:auto;
-        height:auto;
-        }
-
-
-        @media only screen and (max-width: 400px) {
-        img {
-        max-width:120%;
-        max-height:120%;
-        }
-        hr {
-        display: none
-        }
-        }
-
-
-        hr {
-        margin-start: auto;
-        margin-end: auto;
-        border-style: inset;
-        border-width: 5px;
-        }
-
-        .like_btn {
-        text-align: left}
-
-        .like {
-        float: left;
-        margin-top: -22px;
-        margin-left: 10px}
-
-        #like-btn {
-        float: left;
-        margin-top: -30px}
-
-        #unlike-btn {
-        float: left;
-        margin-top: -30px}
-
-        .post_comment {
-        text-align: left;
-        max-width: 1000px;
-        word-wrap:break-word;
-        color: white;
-        margin-left: 50px}
-
-        .post_comment_pic {
-        border-radius: 50%;
-        object-fit: cover;
-        width: 40px;
-        height: 40px;
-        float:left;
-        }
-
-        .search_pic {
-        border-radius: 50%;
-        object-fit: cover;
-        width: 60px;
-        height: 60px;
-        }
-
-        .post_pic {
-        border-radius: 50%;
-        object-fit: cover;
-        width: 50px;
-        height: 50px;
-        float: left}
-
-
-    </style>
     <title>{%block title%}Initter{%endblock%}</title>
 </head>
 <body>
+
 {%include 'navbar.html'%}
 {%load crispy_forms_tags%}
 
 <div id="page_container">
     <div id="content" class="main">
         <div class="row justify-content-center">
-            <div class="col-8">
-                <h1 class="mt-2"></h1>
-                <br><br>
+            <div class="col-md-10 col-xs-12">
+
+                <br>
 
                 {%if request.user.is_authenticated%}
                 {%block content%}
@@ -241,21 +32,26 @@
                 {%else%}
                 {%block login%}
                 <h1>You are not logged in, in order to have access to this website, you need to be registered.
-                Click <a href="/login/" style="color: grey">here</a> to login</h1>
+                    Click <a href="/login/" style="color: grey">here</a> to login</h1>
                 {%endblock%}
                 {%endif%}
-
-
             </div>
         </div>
     </div>
-    <footer>
-    <p style="color: rgb(60, 60, 60)">&copy 2020 Lukáš Zagorský</p>
+
+    <footer class="footer">
+        <p style="color: rgb(60, 60, 60)">&copy 2020 Lukáš Zagorský</p>
     </footer>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

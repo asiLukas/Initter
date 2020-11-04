@@ -1,0 +1,327 @@
+html, body {
+overflow-x: hidden;
+}
+
+body{
+background-color: rgb(20, 20, 20);
+color: white;
+font-family:sans-serif;
+text-align: center;
+}
+
+#content {
+padding-bottom: 2.5rem;
+}
+
+#page_container {
+position: relative;
+min-height: 100vh;
+}
+
+a {
+color: white;
+}
+
+a:hover{
+text-decoration: none;
+color: rgb(200, 200, 200)
+}
+
+form {
+text-align: center;
+margin: 0 auto;
+}
+
+p {
+color: grey;
+text-align: center;
+}
+
+.container {
+max-width: 93.5rem;
+margin: 0 auto;
+padding: 0 2rem;}
+
+
+.profile_main {
+padding: 5rem 0;}
+
+.profile_main::after {
+content: "";
+display: block;
+clear: both;}
+
+.profile_pic {
+float: left;
+display: flex;
+width: calc(33.333% - 1rem);
+justify-content; center;
+align-items: center;
+}
+
+.profile_pic img {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;}
+
+.follow_stats {
+float: left;
+width: calc(90% - 2rem);
+}
+
+.profile_settings {
+text-align: left;
+}
+
+.profile_title {
+display: inline-block;
+font-size: 2.5rem;
+font-weight: 300;
+margin-right: 0.5rem;
+}
+
+.profile-edit-btn {
+color: white;
+background-color: rgb(20, 20, 20);
+line-height: 1.8;
+border: 0.1rem solid #dbdbdb;
+border-radius: 0.3rem;
+}
+
+.profile-settings-btn {
+color: white;
+font-size: 1.5rem;
+margin-left: O.3rem;
+}
+
+.profile-settings-btn:hover {
+color: grey
+}
+
+.profile-edit-btn:hover {
+color: grey;
+}
+
+.follow-btn {
+display: inline-block;
+background-color: rgb(20, 20, 20);
+color: white;
+line-height: 1.8;
+border: 0.1rem solid #dbdbdb;
+border-radius: 0.3rem;
+display: block;
+margin-left: 1rem
+}
+
+.follow_stats {
+margin-top: 2.3rem}
+
+.follow_stats li {
+display: inline-block;
+font-size: 1.2rem;
+line-height: 1.5;
+margin-right: 4rem;
+}
+
+.profile_description{
+max-width: 40rem;
+word-wrap:break-word;
+float: left;
+}
+
+.profile_description span {
+font-size: 1.2rem}
+
+.profile_pic,
+.profile_settings,
+.follow_stats,
+.profile_description{
+   width: auto;
+   margin: 0;
+}
+
+.row {
+display: flex;
+}
+
+.column {
+flex: 33.333%;
+padding-top: 1rem;
+}
+
+.gallery_image {
+object-fit: cover;
+width: 300px;
+height: 300px;
+}
+
+@media only screen and (max-width: 1000px) {
+.gallery_image {
+width: 200px;
+height: 200px;}}
+
+@media only screen and (max-width: 600px) {
+.gallery_image {
+width: 150px;
+height: 150px;}
+
+.column {
+flex: 33.333%;
+padding-top: 0.2rem;
+}
+
+.profile_main {
+display: flex;
+flex-wrap: wrap;
+padding: 4rem 0;
+}
+
+.profile::after {
+display: none;}
+
+.profile_pic,
+.profile_settings,
+.profile_description,
+.follow_stats {
+    float: none;
+    width: auto;
+}
+.profile_pic {
+width: 100px;
+height: 100px}
+
+.profile_settings {
+flex-basis: calc(100% - 10.7rem);
+display: flex;
+flex-wrap: wrap;
+margin-top: 1rem;}
+
+.profile-edit-btn {
+order: 1;
+padding: 0;
+text-align: center;
+margin-top: 0.5rem;
+margin-left: 0;}
+
+.profile-settings-btn {
+display: block;}
+
+.profile_description span {
+font-size: 1rem}
+
+.follow_stats ul {
+display: flex;
+text-align: center;
+padding: 1.2rem 0;
+border-top: 0.1rem;
+border-bottom: 0.1rem}}
+
+@media only screen and (max-width: 400px) {
+.gallery_image {
+width: 120px;
+height: 120px;}}
+
+
+.post {
+text-align: left;
+background-color: rgb(27, 27, 27);
+}
+
+.author_date {
+margin-left: 35px}
+
+.post_pic {
+border-radius: 50%;
+object-fit: cover;
+width: 50px;
+height: 50px;
+float: left;
+}
+
+.post_description {
+word-wrap:break-word;
+color: rgb(200, 200, 200)
+}
+
+@media only screen and (max-width: 500px) {
+.post_author, .post_date, .post_comment,
+.like, .post_description, .post_author,
+#like-btn, #unlike-btn, #comment_btn {
+font-size: 3.5vw
+}
+
+.post_pic {
+width: 30px;
+height: 30px
+}
+
+img {
+max-width:100%;
+max-height:100%;
+width: 100%;
+height: auto;
+}
+}
+
+@media only screen and (min-width: 501px){
+img {
+max-width:100%;
+max-height:100%;
+width: auto;
+height: auto
+}
+}
+
+.img {
+text-align: center}
+
+.like {
+float: left;
+margin-top: -22px;
+margin-left: 10px}
+
+#like-btn {
+background-color: Transparent;
+border: none;
+float: left;
+margin-top: -27px}
+
+#unlike-btn {
+background-color: Transparent;
+border: none;
+float: left;
+margin-top: -27px}
+
+.post_comment {
+text-align: left;
+max-width: 1000px;
+word-wrap:break-word;
+color: white;
+}
+
+
+.search_pic {
+border-radius: 50%;
+object-fit: cover;
+width: 60px;
+height: 60px;
+}
+
+#searchbar {
+background-color: rgb(60, 60, 60);
+color: white;
+padding: 6px;
+border: none;
+margin-top: 8px;
+margin-right: 16px;
+font-size: 17px;
+}
+
+
+.footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 2.5rem;
+}

@@ -5,7 +5,7 @@ from django.contrib.auth.forms import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to='profile_picture/%Y/%m', width_field='width_field',
-                                    height_field='height_field')
+                                    height_field='height_field', default='default.ico')
     description = models.TextField(default='', max_length=150)
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)

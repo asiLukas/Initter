@@ -70,11 +70,12 @@ def profile_view(request, username):
     follows = user.follow.filter().values('follow').count()
     follower_list = current_user.follow.all().filter().values('follower')
 
-    if {'follower': user.id} not in follower_list:
+    if {'follower': user.id} not in follower_list:  # If user is not follower yet, he can follow else he can unfollow
         follow = True
     else:
         follow = False
 
+    # follow twice exception
     try:
         if follow:
             if request.method == 'POST':

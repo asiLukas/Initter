@@ -1,45 +1,57 @@
 {%extends 'base.html'%}
 {%load crispy_forms_tags%}
 {%block content%}
-<h3 class="post_title">{{post.title}}</h3>
-<a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
-<a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
-<h6 class="post_date">{{post.date.date}}</h6>
-<img src="{{post.image.url}}">
-<br><br><br> <!-- -->
+<div class="post">
 
-{%if like%}
-<form method="post" action=""> {%csrf_token%}
-    <button id='like-btn' class="btn btn-dark" name="likeform"><i class="fa fa-heart-o"></i></button>
-</form>
-{%else%}
-<form method="post" action=""> {%csrf_token%}
-    <button id="unlike-btn" class="btn btn-dark" name="likeform"><i class="fa fa-heart"></i></button>
-</form>
-{%endif%}
+    <section class="post_up">
+        <a href="/profile/{{post.author}}"><img class="post_pic" src="{{post.author.userprofile.profile_pic.url}}"></a>
+        <div class="author_date">
+            <a href="/profile/{{post.author}}"><h4 class="post_author">{{post.author}}</h4></a>
+            <h6 class="post_date">{{post.date.date}}</h6>
+        </div>
+    </section>
 
-<h5 class="like"><a href="/p/{{post.id}}/like">{{like_count}} people</a> like this</h5>
+    <section class="img">
+        <img src="{{post.image.url}}">
+    </section>
+
+    <section class="post_down">
+        <h5 class="post_description">{{post.description}}</h5>
+        <br>
+        {%if like%} <!-- if user didn't like the pic yet-->
+            <form method="post" action=""> {%csrf_token%}
+                <button id='like-btn' class="btn btn-dark" name="likeform"><i class="fa fa-heart-o"></i></button>
+            </form>
+        {%else%} <!-- if user liked the pic-->
+            <form method="post" action=""> {%csrf_token%}
+                <button id="unlike-btn" class="btn btn-dark" name="likeform"><i class="fa fa-heart"></i></button>
+            </form>
+        {%endif%}
+
+        <h5 class="like"><a href="/p/{{post.id}}/like">{{like_count}} people</a> like this</h5>
+        <br>
+
+        {%for i in comments%}
+            <a href="/profile/{{i.user}}"><img class="post_pic" src="{{i.user.userprofile.profile_pic.url}}"></a>
+            {%if user == i.user%}
+                <h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a></h5>
+                <p class="post_comment"><a href="/c/{{i.id}}/{{post.id}}">{{i.comment}}</a></p>
+            {%else%}
+                <h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a></h5>
+                <p class="post_comment">{{i.comment}}</p>
+            {%endif%}
+            <br>
+        {%endfor%}
+    </section>
+
+    <form method="post" action=""> {%csrf_token%}
+        {{form|crispy}}
+        <button id="comment_btn" class="btn btn-dark" name="commentform">Comment</button>
+    </form>
+</div>
+
 <br>
-
-{%for i in comments%}
-<a href="/profile/{{i.user}}"><img class="post_comment_pic" src="{{i.user.userprofile.profile_pic.url}}"></a>
-{%if user == i.user%}
-<h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a></h5>
-<p class="post_comment"><a href="/c/{{i.id}}/{{post.id}}">{{i.comment}}</a></p>
-{%else%}
-<h5 class="post_comment"><a href="/profile/{{i.user}}">{{i.user}}: </a></h5>
-<p class="post_comment">{{i.comment}}</p>
-{%endif%}
-<br>
-{%endfor%}
-
-<form method="post" action=""> {%csrf_token%}
-    {{form|crispy}}
-    <button class="btn btn-dark" name="commentform">Comment</button>
-</form>
-<br>
-
-{% if user == post.author %}
+{% if user == post.author or user.is_superuser%} <!-- if current user is same as author, then the user can adjust the post -->
 <a href="update/">
     <button class="btn btn-dark">Update</button>
 </a> <a href="delete/">

@@ -1,0 +1,84 @@
+@media only screen and (min-width: 1101px) {
+    label.logo {
+    color: white;
+    padding: 0 250px 0px 0px;
+    font-weight: bold;}
+
+    #Initter {
+    font-size: 25px}
+
+    .topnav {
+    height: 60px;
+    width: 100%;
+    background: rgb(40, 40, 40);
+    }
+
+    .topnav a{
+    display: inline-block;
+    line-height: 45px;
+    margin: 0 5px;
+    color: white;
+    font-size: 18px;
+    padding: 7px;
+    }
+
+    nav a:hover{
+    color: grey;
+    }
+
+    .topnav a.icon {
+    visibility: hidden}
+
+    #links {
+    position: absolute;
+    top: 0;
+    right: 250px}
+
+    .topnav a:hover {
+      color: rgb(210, 210, 210);
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+
+    .topnav {
+      width: 100%
+      overflow: hidden;
+      background-color: rgb(40, 40, 40);
+      position: relative;
+    }
+
+    .topnav #links {
+      display: none;
+    }
+
+    .topnav a {
+      color: white;
+      padding: 5px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      display: block;
+    }
+
+    .topnav a.icon {
+      position: absolute;
+      font-size: 30px;
+      right: 0;
+      top: 0;
+    }
+
+    .topnav a:hover {
+      color: rgb(210, 210, 210);
+    }
+
+    .logo {
+      color: white;
+      padding: 5px 0px 0px 0px;
+      font-weight: bold;
+
+    }
+
+    #Initter {
+    font-size: 25px
+    }
+}
